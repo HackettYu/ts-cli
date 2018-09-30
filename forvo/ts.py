@@ -4,7 +4,6 @@ import sys
 from transla import Transla  # 不支持带 “-”
 from pronunc import Pronunc
 
-
 # def __init__():
 #     if len(sys.argv) > 0:
 #         for s in sys.argv:
