@@ -21,7 +21,7 @@ class Pronunc:
         if len(englishPageTextList) == 0:
             return '{"status":"error"}'
         englishPageText = englishPageTextList[0]
-        pronunciations = re.findall("Play\(\d+,'(.*?)'", englishPageText)
+        pronunciations = re.findall(r"Play\(\d+,'(.*?)'", englishPageText)
         for l in range(len(pronunciations)):
             pronunciations[l] = base64.b64decode(pronunciations[l]).decode()
 
@@ -30,6 +30,9 @@ class Pronunc:
         pronunclist = key.split('"')  # get the list of voice
         num = num % len(pronunclist)
         pronunc = pronunclist[num]
+
+        print(f"URL:https://forvo.com/mp3/{pronunc}")
+        
         if pronunc == False:  # it could has other pronunciations
             print("no pronunciation")
 
@@ -40,3 +43,4 @@ class Pronunc:
         if pronunc:
             subprocess.call(
                 f"http -d https://forvo.com/mp3/{pronunc} | mpg123 -q -", shell=True)
+            
